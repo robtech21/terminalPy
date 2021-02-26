@@ -1,7 +1,7 @@
-# terminal.py
+# terminalPy
 
-terminal.py is a terminal that got commands from cmd and GNU terminal!
+This is a fork of terminal.py, which is made by luksi-l. (https://github.com/luksi-l/terminal.py)
 
-simple commands: help,version,credits
+# Description
 
-find easter eggs!
+My goal for this project is to make a nice terminal that utilizes commands from Bash, Python, and some other shells potentially
