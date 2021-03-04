@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from appmodules.shortcode import *
 clr()
 
@@ -9,8 +8,8 @@ def changePrompt(state):
   global userPrompt,promptState
   promptState = state
   updatePrompt()
-
-pnt(color('''terminalPy 1.0
+exitMessage = color("Exited.",green)
+pnt(color('''terminalPy 1.5
 
 Made by Robert Furr
 Type 'about' for details
@@ -18,7 +17,7 @@ Type 'about' for details
 changePrompt('termPy')
 while True:
   try:
-    if promptState is not 'termPy':
+    if promptState != 'termPy':
       changePrompt('termPy')
     cmd = inpt(str(userPrompt))
     if cmd == "help-old":
@@ -35,10 +34,10 @@ while True:
       changePrompt('¿Help?')
       pnt('''What kind of help do you want?
 
-termPy     Shows a list of termPy commands    
-python     Runs Python help() function
-pythonmod  Prompts for help on a particular Python function or module
-man        Access a manpage of your choice
+  termPy     Shows a list of termPy commands
+  python     Runs Python help() function
+  pythonmod  Prompts for help on a particular Python function or module
+  man        Access a manpage of your choice
   ''')
       cmd1 = inpt(str(userPrompt))
       if cmd1 == "python":
@@ -52,12 +51,19 @@ man        Access a manpage of your choice
         pnt('Exited help')
       elif cmd1 == "man":
         pnt("What do you want to view the manpage for?")
+    elif cmd == "cls":
+      clr()
+    elif cmd == "clr":
+      clr()
     elif cmd == "clear":
       clr()
     elif cmd == "exit":
       break
-    elif cmd == "pkg":
-      pnt(color('Package Menu',green))
+    elif cmd == "leave":
+      break
+    elif cmd == "scram":
+      exitMessage = color("Get outta here!",red)
+      break
     elif cmd == "version":
       pnt("version of console is 1.0")
     elif cmd == "credits":
@@ -72,14 +78,67 @@ man        Access a manpage of your choice
       changePrompt('Python')
       pnt('Enter python command (single line only)')
       inpt(str(userPrompt))
+    elif cmd == "ls":
+      dols()
+    elif cmd == "dir":
+        dols()
+    elif cmd == "cls":
+      clr()
+    elif cmd == "oscmd":
+      changePrompt("oscmd")
+      cmd1 = inpt(str(userPrompt))
+      system(str(cmd1))
+
+    elif cmd == "pkg":
+      changePrompt('pkg')
+      pnt('''Options:
+  pip: Install Python packages through pip''')
+      if osName == 'posix':
+        pnt('  os: Use the package manager of your native OS')
+      if osName == 'nt':
+        pnt(' scoop (not working yet): Use the scoop package manager for Windows (you need to have scoop installed for this to work)')
+      cmd1 = inpt(str(userPrompt))
+      if cmd1 == "pip":
+        changePrompt('pkg/pip')
+        pnt('Which package?')
+        cmd2 = inpt(str(userPrompt))
+        system('python -m pip install '+str(cmd2))
+      if osName == 'nt' and cmd1 == 'scoop':
+        changePrompt('pkg/scoop')
+        pnt('Arguments? (anything that goes after "scoop")')
+        cmd2 = inpt(str(userPrompt))
+        system('powershell -Command scoop '+str(cmd2))
+      if osName == 'nt' and cmd1 == 'os':
+        changePrompt('pkg/os')
+        pnt('''Which package manager do you have?
+  apt: Package manager for Debian or Ubuntu Linux
+  pacman: Package manager for Arch Linux
+  dnf: Package manager for Fedora Linux
+  ''')
+        cmd2 = inpt(str(userPrompt))
+        if cmd2 == 'apt':
+          changePrompt('pkg/apt')
+          pnt('Arguments?')
+          cmd3 = inpt(str(userPrompt))
+          system('sudo apt '+str(cmd3))
+        if cmd2 == 'pacman':
+          changePrompt('pkg/pacman')
+          pnt('Arguments?')
+          cmd3 = inpt(str(userPrompt))
+          system('sudo pacman '+str(cmd3))
+        if cmd2 == 'dnf':
+          changePrompt('pkg/dnf')
+          pnt('Arguments?')
+          cmd3 = inpt(str(userPrompt))
+          system('sudo dnf '+str(cmd3))
     else:
       if str(cmd) == '':
         None
       else:
         pnt(str(cmd)+": Invalid command or no such command found")
   except EOFError as e:
-    print(e)
+    pnt(e)
     break
 
-pnt('exited')
+pnt(str(exitMessage))
 exit()
