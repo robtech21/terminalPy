@@ -9,7 +9,7 @@ def changePrompt(state):
   promptState = state
   updatePrompt()
 exitMessage = color("Exited.",green)
-pnt(color('''terminalPy 1.5
+pnt(color('''terminalPy 1.6
 
 Made by Robert Furr
 Type 'about' for details
@@ -34,14 +34,26 @@ while True:
       changePrompt('¿Help?')
       pnt('''What kind of help do you want?
 
-  termPy     Shows a list of termPy commands
+  termpy     Shows a list of termPy commands
   python     Runs Python help() function
   pythonmod  Prompts for help on a particular Python function or module
-  man        Access a manpage of your choice
   ''')
+      if osName == 'posix':
+        print('  man        Access a manpage of your choice')
       cmd1 = inpt(str(userPrompt))
       if cmd1 == "python":
         system("python3 -c 'help()'")
+      elif cmd1 == "termpy":
+        print('''termPy Commands:
+  help:               view this help screen
+  clear, cls, clr:    clears the screen
+  ls, dir:            views the contents of the directory
+  exit, leave:        exits commandPy
+  py:                 runs the Python interpreter
+  oscmd:              allows you to run a command through "os.system()" 
+  version:            display version info
+  ''')
+        
       elif cmd1 == "pythonmod":
         changePrompt('¿py?')
         pnt("Which Module?")
@@ -65,7 +77,7 @@ while True:
       exitMessage = color("Get outta here!",red)
       break
     elif cmd == "version":
-      pnt("version of console is 1.0")
+      pnt("terminalPy version 1.6")
     elif cmd == "credits":
         pnt('''made by luksi :)
   Forked and improved by Robert Furr (https://github.com/robtech21)''')
