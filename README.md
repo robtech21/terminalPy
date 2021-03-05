@@ -4,7 +4,7 @@ This is a fork of terminal.py, which is made by luksi-l. (https://github.com/luk
 
 # Description
 
-terminalPy is a easy-to-use and cross-platform terminal app written in Python that works on Windows on Linux
+terminalPy is a easy-to-use and cross-platform terminal app written in Python that works on Windows and Linux
 
 # Installation
 
