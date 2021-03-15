@@ -1,6 +1,8 @@
 # terminalPy
 
-This is a fork of terminal.py, which is made by luksi-l. (https://github.com/luksi-l/terminal.py)
+**This project is no longer maintained.** If you would like to start maintaining this project, please [email me](mailto:robert@megley.com).
+
+This is a fork of [terminal.py](https://github.com/luksi-l/terminal.py), which is made by luksi-l. 
 
 # Description
 
